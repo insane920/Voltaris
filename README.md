@@ -1,65 +1,63 @@
+Вставь это вместо текущего `README.md`:
+
+```md
 # Voltaris
 
+Desktop CAD-приложение для создания электрических схем и исследования переходных процессов в выбранных электрических цепях.
 
-Desktop CAD for editing electrical schematics and exploring transient behaviour of selected circuits. Voltaris is an engineering software project focused on an interactive schematic editor, numerical simulation, and explainable calculation output.
+Voltaris сочетает интерактивный редактор схем, численное моделирование и подробный отчёт о расчётах. Приложение работает локально и не требует API-ключей, облачного сервиса или бэкенда.
 
+## Возможности
 
-> The application is not an AI product and does not require an API key, cloud service, or backend to run.
+- Интерактивный редактор электрических схем: палитра компонентов, ортогональные соединения, поворот, выделение, отмена и повтор действий.
+- Готовые примеры схем для быстрого запуска.
+- Импорт и экспорт схем в читаемом формате `.scm`.
+- Расчёт переходных процессов в линейных R/L/C-цепях с независимыми источниками.
+- Использование модифицированного метода узловых потенциалов (MNA) и неявного метода Эйлера.
+- Графики сигналов, таблицы результатов и экспорт данных в CSV.
+- Генерация HTML-отчёта с формулами, промежуточными значениями и результатами расчёта.
+- Выполнение расчётов в Web Workers, чтобы интерфейс не зависал во время моделирования.
+- Регрессионные проверки примеров схем, некорректных входных данных, формата SCM и эталонных RC/RLC-сценариев.
+- Сборка Windows-приложения через Electron.
 
+## Стек
 
-## Highlights
-
-
-- Interactive electrical-schematic editor with component palette, orthogonal wiring, rotation, selection, undo/redo, and example circuits.
-- Import and export of the human-readable `.scm` format.
-- Transient analysis for linear R/L/C circuits with independent sources, using modified nodal analysis (MNA) and backward Euler integration.
-- Graphs, signal tables, CSV export, and a standalone HTML calculation report with equations and intermediate values.
-- Background Web Workers so a simulation does not block the editor.
-- Numerical regression checks for sample circuits, invalid inputs, signal handling, SCM round trips, and analytical RC/RLC references.
-- Windows desktop packaging through Electron; development mode is also available through Vite.
-
-
-## Screenshots
-
-
-No screenshots are committed yet. Before publishing, capture the editor, a transient plot, and the calculation-report view; place them in `docs/screenshots/` and link them here with descriptive alt text. Do not use diagrams or generated images in place of product screenshots.
-
-
-## Architecture and stack
-
-
-| Area | Implementation |
+| Область | Технологии |
 | --- | --- |
-| UI | React 19, TypeScript, Tailwind CSS, Lucide |
-| Editor | SVG components, orthogonal-wire geometry, editable component properties |
-| Simulation | TypeScript MNA solver, backward Euler for linear transient circuits, RK4-based specialised scenarios |
-| Responsiveness | Browser Web Workers for calculations and validation |
-| Desktop | Electron with context isolation, sandboxed renderer, and limited SCM file IPC |
-| Tooling | Vite, TypeScript, tsx checks, electron-builder |
+| Интерфейс | React 19, TypeScript, Tailwind CSS, Lucide |
+| Редактор схем | SVG, геометрия ортогональных соединений, редактируемые свойства компонентов |
+| Моделирование | TypeScript, MNA, неявный метод Эйлера, специализированные сценарии на основе RK4 |
+| Производительность | Web Workers для расчётов и валидации |
+| Desktop | Electron, context isolation, sandboxed renderer, ограниченный IPC для файлов SCM |
+| Инструменты | Vite, TypeScript, tsx, electron-builder |
 
+## Скриншоты
 
-## Run locally
+Скриншоты будут добавлены позже:
 
+- редактор схем;
+- график переходного процесса;
+- HTML-отчёт о расчёте.
 
-Requirements: Windows for the packaged app and Node.js 22.12 or newer. Development and checks are JavaScript/TypeScript based.
+## Запуск локально
 
+Требования:
+
+- Node.js 22.12 или новее;
+- Windows — для сборки и запуска desktop-версии.
 
 ```powershell
 npm ci
 npm run dev
 ```
 
-
-To run the Electron application from source:
-
+Запуск Electron-версии из исходников:
 
 ```powershell
 npm run electron:start
 ```
 
-
-## Verify and package
-
+## Проверка и сборка
 
 ```powershell
 npm run lint
@@ -68,11 +66,15 @@ npm run build
 npm run dist:win
 ```
 
+Команда `npm run dist:win` создаёт Windows-инсталлятор и portable-версию в папке `release/`.
 
-`npm run dist:win` produces a Windows installer and portable executable in `release/`. Build outputs, dependencies, local environment files, and internal audit notes are intentionally excluded from version control. Continuous integration runs `npm ci`, linting, tests, and the Vite build on Node 22.
+GitHub Actions автоматически запускает установку зависимостей, линтер, тесты и production-сборку на Node.js 22.
 
+## Ограничения
 
-## License
+Voltaris предназначен для учебных, исследовательских и инженерных экспериментов. Результаты моделирования зависят от поддерживаемых моделей компонентов и численных методов, поэтому перед использованием в реальных инженерных задачах их следует отдельно проверять.
 
+## Лицензия
 
-Licensed under the [MIT License](LICENSE).
+Проект распространяется по [лицензии MIT](LICENSE).
+```
